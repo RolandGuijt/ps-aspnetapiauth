@@ -1,7 +1,7 @@
 using Globomantics.Api.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,18 +24,9 @@ builder.Services.AddSwaggerGen(o =>
             }
         }
     });
-    o.AddSecurityRequirement(new OpenApiSecurityRequirement
+    o.AddSecurityRequirement(document => new OpenApiSecurityRequirement
     { 
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Id = "oauth2", //The name of the previously defined security scheme.
-                    Type = ReferenceType.SecurityScheme
-                }
-            },new List<string>()
-        }
+        [new OpenApiSecuritySchemeReference("oauth2", document)] = new List<string> { "globoapi" }
     });
 });
 builder.Services.AddScoped<IConferenceRepository, ConferenceRepository>();

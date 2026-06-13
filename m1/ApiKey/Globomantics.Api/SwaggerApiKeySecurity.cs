@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Globomantics.Api
@@ -15,17 +15,10 @@ namespace Globomantics.Api
                 In = ParameterLocation.Header,
                 Scheme = "ApiKeyScheme"
             });
-            var key = new OpenApiSecurityScheme()
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "ApiKey"
-                },
-                In = ParameterLocation.Header
-            };
-            var requirement = new OpenApiSecurityRequirement { { key, new List<string>() } };
-            c.AddSecurityRequirement(requirement);
+            c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+            { 
+                [new OpenApiSecuritySchemeReference("ApiKey", document)] = new List<string>() 
+            });
         }
     }
 }

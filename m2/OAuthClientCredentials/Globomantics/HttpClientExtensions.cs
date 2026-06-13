@@ -1,5 +1,5 @@
-﻿using IdentityModel.Client;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Duende.IdentityModel.Client;
 
 namespace Globomantics;
 
