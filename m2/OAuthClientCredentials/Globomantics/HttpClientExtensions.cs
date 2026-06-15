@@ -5,7 +5,7 @@ namespace Globomantics;
 
 public static class HttpClientExtensions
 {
-    private static string? _accessToken;
+    private static string _accessToken;
 
     private static async Task<string> FetchAccessToken(HttpClient client)
     {

@@ -14,7 +14,7 @@ public class ProposalRepository : IProposalRepository
         return proposals.Where(p => p.ConferenceId == conferenceId);
     }
 
-    public ProposalModel? GetById(int id)
+    public ProposalModel GetById(int id)
     {
         return proposals.FirstOrDefault(p => p.Id == id);
     }

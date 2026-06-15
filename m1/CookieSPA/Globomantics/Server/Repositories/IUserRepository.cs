@@ -4,5 +4,5 @@ namespace Globomantics.Repositories;
 
 public interface IUserRepository
 {
-    UserModel? GetByUsernameAndPassword(string username, string password);
+    UserModel GetByUsernameAndPassword(string username, string password);
 }

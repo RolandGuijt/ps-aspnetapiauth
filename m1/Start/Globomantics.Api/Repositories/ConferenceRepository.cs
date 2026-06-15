@@ -32,7 +32,7 @@ public class ConferenceRepository : IConferenceRepository
         return model.Id;
     }
 
-    public ConferenceModel? GetById(int id)
+    public ConferenceModel GetById(int id)
     {
         return conferences.SingleOrDefault(c => c.Id == id);
     }

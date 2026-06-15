@@ -1,6 +1,5 @@
 using Globomantics.Api;
 using Globomantics.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +16,7 @@ var app = builder.Build();
 //    [TypeFilter(typeof(ApiKeyAttribute))] (IConferenceRepository repo) => 
 //        repo.GetAll());
 
-//app.UseApiKey();
+app.UseApiKey();
 app.UseAuthorization();
 
 app.UseSwagger();

@@ -21,7 +21,7 @@ public class ProposalRepository : IProposalRepository
         return model.Id;
     }
 
-    public ProposalModel? Approve(int proposalId)
+    public ProposalModel Approve(int proposalId)
     {
         var proposal = proposals.FirstOrDefault(p => p.Id == proposalId);
         if (proposal != null)
@@ -29,7 +29,7 @@ public class ProposalRepository : IProposalRepository
         return proposal;
     }
 
-    public ProposalModel? GetOne(int id)
+    public ProposalModel GetOne(int id)
     {
         return proposals.FirstOrDefault(p => p.Id == id);
     }

@@ -2,29 +2,22 @@
 
 namespace Globomantics.Client.ApiServices
 {
-    public class ProposalApiService : IProposalApiService
+    public class ProposalApiService(HttpClient client) : IProposalApiService
     {
-        private readonly HttpClient _Client;
-
-        public ProposalApiService(HttpClient client)
+        public async Task<IEnumerable<ProposalModel>> GetAll(int conferenceId)
         {
-            _Client = client;
-        }
-
-        public async Task<IEnumerable<ProposalModel>?> GetAll(int conferenceId)
-        {
-            return await _Client.GetFromJsonAsync<IEnumerable<ProposalModel>>($"/proposal/all/{conferenceId}");
+            return await client.GetFromJsonAsync<IEnumerable<ProposalModel>>($"/proposal/all/{conferenceId}");
         }
 
         public async Task Add(ProposalModel model)
         {
-            await _Client.PostAsJsonAsync("proposal", model);
+            await client.PostAsJsonAsync("proposal", model);
         }
 
-        public async Task<ProposalModel?> Approve(int proposalId)
+        public async Task<ProposalModel> Approve(int proposalId)
         {
             var resp =
-                await _Client.PutAsync($"/proposal/approve/{proposalId}", null);
+                await client.PutAsync($"/proposal/approve/{proposalId}", null);
             return await resp.Content.ReadFromJsonAsync<ProposalModel>();
         }
     }

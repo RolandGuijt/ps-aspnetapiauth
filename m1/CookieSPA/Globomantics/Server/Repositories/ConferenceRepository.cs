@@ -25,7 +25,7 @@ public class ConferenceRepository : IConferenceRepository
         return conferences;
     }
 
-    public ConferenceModel? GetById(int id)
+    public ConferenceModel GetById(int id)
     {
         return conferences.SingleOrDefault(c => c.Id == id);
     }
