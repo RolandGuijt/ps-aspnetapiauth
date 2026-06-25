@@ -6,21 +6,14 @@ namespace Globomantics.Server.Controllers
 {
     [ApiController]
     [Route("conference")]
-    public class ConferenceController : Controller
+    public class ConferenceController(IConferenceRepository repo) : Controller
     {
-        private readonly IConferenceRepository _Repo;
-
-        public ConferenceController(IConferenceRepository repo)
-        {
-            _Repo = repo;
-        }
-
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult GetAll()
         {
-            var conferences = _Repo.GetAll();
+            var conferences = repo.GetAll();
             if (conferences == null || !conferences.Any())
             {
                 return NoContent();
@@ -33,7 +26,7 @@ namespace Globomantics.Server.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetById(int id)
         {
-            var conference = _Repo.GetById(id);
+            var conference = repo.GetById(id);
             if (conference == null)
             {
                 return NotFound();
@@ -45,7 +38,7 @@ namespace Globomantics.Server.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Add(ConferenceModel model)
         {
-            var id = _Repo.Add(model);
+            var id = repo.Add(model);
             return CreatedAtAction(nameof(GetById), new { id }, model);
         }
     }
