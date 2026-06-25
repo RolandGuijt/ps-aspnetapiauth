@@ -4,16 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Globomantics.Controllers;
 
-public class ProposalController : Controller
-{
-    private readonly IConferenceApiService _ConferenceApiService;
-    private readonly IProposalApiService _ProposalApiService;
-
-    public ProposalController(IConferenceApiService conferenceApiService, IProposalApiService proposalApiService)
-    {
-        _ConferenceApiService = conferenceApiService;
-        _ProposalApiService = proposalApiService;
-    }
+public class ProposalController(IConferenceApiService conferenceApiService, IProposalApiService proposalApiService) : Controller {
+    private readonly IConferenceApiService _ConferenceApiService = conferenceApiService;
+    private readonly IProposalApiService _ProposalApiService = proposalApiService;
 
     public async Task<IActionResult> Index(int conferenceId)
     {
@@ -44,3 +37,4 @@ public class ProposalController : Controller
         return RedirectToAction("Index", new { conferenceId = proposal.ConferenceId });
     }
 }
+

@@ -1,13 +1,8 @@
 ﻿namespace Globomantics.Api
 {
-    public class ApiKeyMiddleware
-    {
-        private readonly RequestDelegate _next;
+    public class ApiKeyMiddleware(RequestDelegate next) {
+        private readonly RequestDelegate _next = next;
         private const string _ApiKeyName = "XApiKey";
-        public ApiKeyMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
         public async Task InvokeAsync(HttpContext context, IConfiguration config)
         {
             var apiKeyPresentInHeader = context.Request.Headers
@@ -35,3 +30,4 @@
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using Duende.IdentityServer;
+﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Test;
@@ -13,26 +13,14 @@ namespace Globomantics.Idp.Pages.ExternalLogin;
 
 [AllowAnonymous]
 [SecurityHeaders]
-public class Callback : PageModel
-{
-    private readonly TestUserStore _users;
-    private readonly IIdentityServerInteractionService _interaction;
-    private readonly ILogger<Callback> _logger;
-    private readonly IEventService _events;
-
-    public Callback(
-        IIdentityServerInteractionService interaction,
+public class Callback(IIdentityServerInteractionService interaction,
         IEventService events,
         ILogger<Callback> logger,
-        TestUserStore users = null)
-    {
-        // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-        _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
-
-        _interaction = interaction;
-        _logger = logger;
-        _events = events;
-    }
+        TestUserStore users = null) : PageModel {
+    private readonly TestUserStore _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
+    private readonly IIdentityServerInteractionService _interaction = interaction;
+    private readonly ILogger<Callback> _logger = logger;
+    private readonly IEventService _events = events;
 
     public async Task<IActionResult> OnGet(CancellationToken ct)
     {

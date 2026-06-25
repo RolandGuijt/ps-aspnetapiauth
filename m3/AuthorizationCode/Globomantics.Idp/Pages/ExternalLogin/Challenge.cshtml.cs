@@ -1,4 +1,4 @@
-using Duende.IdentityServer.Services;
+﻿using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,14 +8,8 @@ namespace Globomantics.Idp.Pages.ExternalLogin;
 
 [AllowAnonymous]
 [SecurityHeaders]
-public class Challenge : PageModel
-{
-    private readonly IIdentityServerInteractionService _interactionService;
-
-    public Challenge(IIdentityServerInteractionService interactionService)
-    {
-        _interactionService = interactionService;
-    }
+public class Challenge(IIdentityServerInteractionService interactionService) : PageModel {
+    private readonly IIdentityServerInteractionService _interactionService = interactionService;
 
     public IActionResult OnGet(string scheme, string returnUrl)
     {

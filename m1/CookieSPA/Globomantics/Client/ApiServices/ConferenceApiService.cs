@@ -3,14 +3,8 @@ using System.Net.Http.Json;
 
 namespace Globomantics.Client.ApiServices
 {
-    public class ConferenceApiService : IConferenceApiService
-    {
-        private readonly HttpClient _Client;
-
-        public ConferenceApiService(HttpClient client)
-        {
-            _Client = client;
-        }
+    public class ConferenceApiService(HttpClient client) : IConferenceApiService {
+        private readonly HttpClient _Client = client;
 
         public async Task<IEnumerable<ConferenceModel>> GetAll()
         {
@@ -24,3 +18,4 @@ namespace Globomantics.Client.ApiServices
         }
     }
 }
+

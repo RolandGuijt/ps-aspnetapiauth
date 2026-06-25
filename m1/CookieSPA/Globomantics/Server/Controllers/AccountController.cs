@@ -1,4 +1,4 @@
-using Globomantics.Models;
+﻿using Globomantics.Models;
 using Globomantics.Repositories;
 using Globomantics.Shared;
 using Microsoft.AspNetCore.Authentication;
@@ -9,13 +9,8 @@ using System.Security.Claims;
 
 namespace Globomantics.Server.Controllers
 {
-    public class AccountController : Controller
-    {
-        private readonly IUserRepository userRepository;
-        public AccountController(IUserRepository userRepository)
-        {
-            this.userRepository = userRepository;
-        }
+    public class AccountController(IUserRepository userRepository) : Controller {
+        private readonly IUserRepository userRepository = userRepository;
 
         public IEnumerable<UserClaim> GetUserClaims()
         {

@@ -2,14 +2,8 @@
 
 namespace Globomantics.ApiServices
 {
-    public class ConferenceApiService : IConferenceApiService
-    {
-        private readonly HttpClient _Client;
-
-        public ConferenceApiService(IHttpClientFactory factory)
-        {
-            _Client = factory.CreateClient("globoapi");
-        }
+    public class ConferenceApiService(IHttpClientFactory factory) : IConferenceApiService {
+        private readonly HttpClient _Client = factory.CreateClient("globoapi");
 
         public async Task<IEnumerable<ConferenceModel>> GetAll()
         {
@@ -29,3 +23,4 @@ namespace Globomantics.ApiServices
         }
     }
 }
+

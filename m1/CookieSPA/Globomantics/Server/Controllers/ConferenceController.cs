@@ -7,14 +7,8 @@ namespace Globomantics.Server.Controllers
 {
     [ApiController]
     [Route("/api/conference")]
-    public class ConferenceController : Controller
-    {
-        private readonly IConferenceRepository _Repo;
-
-        public ConferenceController(IConferenceRepository repo)
-        {
-            _Repo = repo;
-        }
+    public class ConferenceController(IConferenceRepository repo) : Controller {
+        private readonly IConferenceRepository _Repo = repo;
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -53,3 +47,4 @@ namespace Globomantics.Server.Controllers
         }
     }
 }
+

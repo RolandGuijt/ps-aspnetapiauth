@@ -4,14 +4,8 @@ using System.Security.Claims;
 
 namespace Globomantics.Api.Authorization
 {
-    public class IsInRoleHandler: AuthorizationHandler<IsInRoleRequirement>
-    {
-        private readonly IAuthorizationApiService _AuthorizationApiService;
-
-        public IsInRoleHandler(IAuthorizationApiService authorizationApiService)
-        {
-            _AuthorizationApiService = authorizationApiService;
-        }
+    public class IsInRoleHandler(IAuthorizationApiService authorizationApiService) : AuthorizationHandler<IsInRoleRequirement> {
+        private readonly IAuthorizationApiService _AuthorizationApiService = authorizationApiService;
 
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, 
             IsInRoleRequirement requirement)
@@ -25,3 +19,4 @@ namespace Globomantics.Api.Authorization
         }
     }
 }
+

@@ -5,15 +5,8 @@ using System.Security.Claims;
 
 namespace Globomantics.Client
 {
-    public class ServerAuthenticationStateProvider : 
-        AuthenticationStateProvider
-    {
-        private readonly HttpClient _HttpClient;
-
-        public ServerAuthenticationStateProvider(HttpClient httpClient)
-        {
-            _HttpClient = httpClient;
-        }
+    public class ServerAuthenticationStateProvider(HttpClient httpClient) : AuthenticationStateProvider {
+        private readonly HttpClient _HttpClient = httpClient;
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             return new AuthenticationState(await GetUser());
@@ -43,3 +36,4 @@ namespace Globomantics.Client
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -28,6 +28,5 @@ app.MapGet("/user", (ClaimsPrincipal user) =>
 
 app.Run();
 
-class AppDbContext : IdentityDbContext {
-    public AppDbContext(DbContextOptions<AppDbContext> options): base(options) { }
+ class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext(options) {
 }

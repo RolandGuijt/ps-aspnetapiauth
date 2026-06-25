@@ -8,14 +8,8 @@ namespace Globomantics.Server.Controllers
     [ApiController]
     [Route("/api/proposal")]
     [Authorize]
-    public class ProposalController : Controller
-    {
-        private readonly IProposalRepository _Repo;
-
-        public ProposalController(IProposalRepository repo)
-        {
-            _Repo = repo;
-        }
+    public class ProposalController(IProposalRepository repo) : Controller {
+        private readonly IProposalRepository _Repo = repo;
 
         [HttpGet("all/{conferenceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -61,3 +55,4 @@ namespace Globomantics.Server.Controllers
         }
     }
 }
+

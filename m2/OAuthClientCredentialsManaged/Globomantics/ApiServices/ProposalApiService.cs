@@ -3,14 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Globomantics.ApiServices
 {
-    public class ProposalApiService : IProposalApiService
-    {
-        private readonly HttpClient _Client;
-
-        public ProposalApiService(IHttpClientFactory factory)
-        {
-            _Client = factory.CreateClient("globoapi");
-        }
+    public class ProposalApiService(IHttpClientFactory factory) : IProposalApiService {
+        private readonly HttpClient _Client = factory.CreateClient("globoapi");
 
         public async Task<IEnumerable<ProposalModel>> GetAll(int conferenceId)
         {
@@ -30,3 +24,4 @@ namespace Globomantics.ApiServices
         }
     }
 }
+

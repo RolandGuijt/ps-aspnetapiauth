@@ -7,14 +7,8 @@ namespace Globomantics.Controllers;
 
 [Authorize]
 [ServiceFilter(typeof(EnsureAccessTokenFilter))]
-public class ConferenceController : Controller
-{
-    private readonly IConferenceApiService _ApiService;
-
-    public ConferenceController(IConferenceApiService service)
-    {
-        _ApiService = service;
-    }
+public class ConferenceController(IConferenceApiService service) : Controller {
+    private readonly IConferenceApiService _ApiService = service;
 
     public async Task<IActionResult> Index()
     {
@@ -37,3 +31,4 @@ public class ConferenceController : Controller
         return RedirectToAction("Index");
     }
 }
+

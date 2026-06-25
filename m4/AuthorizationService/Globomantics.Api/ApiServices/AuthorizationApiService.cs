@@ -3,16 +3,10 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Globomantics.Api.ApiServices
 {
-    public class AuthorizationApiService : IAuthorizationApiService
-    {
-        private readonly IHttpContextAccessor _ContextAccessor;
-        private HttpClient _HttpClient;
-        public AuthorizationApiService(IHttpClientFactory httpClientFactory,
-            IHttpContextAccessor contextAccessor)
-        {
-            _HttpClient = httpClientFactory.CreateClient("authorization");
-            _ContextAccessor = contextAccessor;
-        }
+    public class AuthorizationApiService(IHttpClientFactory httpClientFactory,
+            IHttpContextAccessor contextAccessor) : IAuthorizationApiService {
+        private readonly IHttpContextAccessor _ContextAccessor = contextAccessor;
+        private HttpClient _HttpClient = httpClientFactory.CreateClient("authorization");
         public async Task<Permissions> GetPermissions(int userId, int applicationId)
         {
             var accessToken = await _ContextAccessor.
@@ -32,3 +26,4 @@ namespace Globomantics.Api.ApiServices
         public string Role { get; set; }
     }
 }
+

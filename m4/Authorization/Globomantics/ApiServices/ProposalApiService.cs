@@ -4,14 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Globomantics.ApiServices
 {
     [ServiceFilter(typeof(EnsureAccessTokenFilter))]
-    public class ProposalApiService : IProposalApiService
-    {
-        private readonly HttpClient _Client;
-
-        public ProposalApiService(HttpClient client)
-        {
-            _Client = client;
-        }
+    public class ProposalApiService(HttpClient client) : IProposalApiService {
+        private readonly HttpClient _Client = client;
 
         public async Task<IEnumerable<ProposalModel>> GetAll(int conferenceId)
         {
@@ -31,3 +25,4 @@ namespace Globomantics.ApiServices
         }
     }
 }
+

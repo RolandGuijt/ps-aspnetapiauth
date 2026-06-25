@@ -1,4 +1,4 @@
-using Duende.IdentityServer.Events;
+﻿using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
@@ -12,21 +12,12 @@ namespace Globomantics.Idp.Pages.Consent;
 
 [Authorize]
 [SecurityHeadersAttribute]
-public class Index : PageModel
-{
-    private readonly IIdentityServerInteractionService _interaction;
-    private readonly IEventService _events;
-    private readonly ILogger<Index> _logger;
-
-    public Index(
-        IIdentityServerInteractionService interaction,
+public class Index(IIdentityServerInteractionService interaction,
         IEventService events,
-        ILogger<Index> logger)
-    {
-        _interaction = interaction;
-        _events = events;
-        _logger = logger;
-    }
+        ILogger<Index> logger) : PageModel {
+    private readonly IIdentityServerInteractionService _interaction = interaction;
+    private readonly IEventService _events = events;
+    private readonly ILogger<Index> _logger = logger;
 
     public ViewModel View { get; set; }
 

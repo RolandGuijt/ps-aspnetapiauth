@@ -8,16 +8,9 @@ namespace Globomantics.Api.Controllers
     [ApiController]
     [Route("conference")]
     [Authorize(Policy = "isAdmin")]
-    public class ConferenceController : Controller
-    {
-        private readonly IConferenceRepository _Repo;
-        private readonly IAuthorizationService _AuthService;
-
-        public ConferenceController(IConferenceRepository repo, IAuthorizationService authService)
-        {
-            _Repo = repo;
-            _AuthService = authService;
-        }
+    public class ConferenceController(IConferenceRepository repo, IAuthorizationService authService) : Controller {
+        private readonly IConferenceRepository _Repo = repo;
+        private readonly IAuthorizationService _AuthService = authService;
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -54,3 +47,4 @@ namespace Globomantics.Api.Controllers
         }
     }
 }
+

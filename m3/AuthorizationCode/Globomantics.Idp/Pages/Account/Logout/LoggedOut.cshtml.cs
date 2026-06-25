@@ -1,4 +1,4 @@
-using Duende.IdentityServer.Services;
+﻿using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -6,16 +6,10 @@ namespace Globomantics.Idp.Pages.Account.Logout;
 
 [SecurityHeaders]
 [AllowAnonymous]
-public class LoggedOut : PageModel
-{
-    private readonly IIdentityServerInteractionService _interactionService;
+public class LoggedOut(IIdentityServerInteractionService interactionService) : PageModel {
+    private readonly IIdentityServerInteractionService _interactionService = interactionService;
 
     public LoggedOutViewModel View { get; set; }
-
-    public LoggedOut(IIdentityServerInteractionService interactionService)
-    {
-        _interactionService = interactionService;
-    }
 
     public async Task OnGet(string logoutId, CancellationToken ct)
     {

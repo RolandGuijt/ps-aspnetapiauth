@@ -1,4 +1,4 @@
-using Duende.IdentityServer.Models;
+﻿using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Stores;
 using Microsoft.AspNetCore.Mvc;
@@ -6,14 +6,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Globomantics.Idp.Pages.ServerSideSessions
 {
-    public class IndexModel : PageModel
-    {
-        private readonly ISessionManagementService _sessionManagementService;
-
-        public IndexModel(ISessionManagementService sessionManagementService = null)
-        {
-            _sessionManagementService = sessionManagementService;
-        }
+    public class IndexModel(ISessionManagementService sessionManagementService = null) : PageModel {
+        private readonly ISessionManagementService _sessionManagementService = sessionManagementService;
 
         public QueryResult<UserSession> UserSessions { get; set; }
 
@@ -54,3 +48,4 @@ namespace Globomantics.Idp.Pages.ServerSideSessions
         }
     }
 }
+
