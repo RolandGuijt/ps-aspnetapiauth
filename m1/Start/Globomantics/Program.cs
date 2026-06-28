@@ -4,9 +4,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IConferenceApiService, ConferenceApiService>();
-builder.Services.AddScoped<IProposalApiService, ProposalApiService>();
-
 // Registering Typed Clients
 builder.Services.AddHttpClient<IConferenceApiService, ConferenceApiService>(client =>
 {

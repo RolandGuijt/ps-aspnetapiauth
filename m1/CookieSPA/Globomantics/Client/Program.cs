@@ -9,12 +9,18 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddAuthorizationCore();
-builder.Services.AddSingleton(sp => new HttpClient
+
+// Registering Typed Clients
+builder.Services.AddHttpClient<IConferenceApiService, ConferenceApiService>(client =>
 {
-    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
 });
-builder.Services.AddSingleton<IConferenceApiService, ConferenceApiService>();
-builder.Services.AddSingleton<IProposalApiService, ProposalApiService>();
+
+builder.Services.AddHttpClient<IProposalApiService, ProposalApiService>(client =>
+{
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+});
+
 builder.Services.AddSingleton<AuthenticationStateProvider,
     ServerAuthenticationStateProvider>();
 

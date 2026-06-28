@@ -5,14 +5,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<IConferenceApiService, ConferenceApiService>();
-builder.Services.AddScoped<IProposalApiService, ProposalApiService>();
-
-builder.Services.AddSingleton(sp =>
+// Registering Typed Clients
+builder.Services.AddHttpClient<IConferenceApiService, ConferenceApiService>(client =>
 {
-    var client = new HttpClient { BaseAddress = new Uri("https://localhost:5002") };
     client.DefaultRequestHeaders.Add("XApiKey", "secret");
-    return client;
+    client.BaseAddress = new Uri("https://localhost:5002");
+});
+
+builder.Services.AddHttpClient<IProposalApiService, ProposalApiService>(client =>
+{
+    client.DefaultRequestHeaders.Add("XApiKey", "secret");
+    client.BaseAddress = new Uri("https://localhost:5002");
 });
 
 var app = builder.Build();

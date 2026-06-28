@@ -7,7 +7,7 @@ using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews(o =>
-    o.Filters.Add(new AuthorizeFilter()));
+    o.Filters.Add(new AuthorizeFilter())); 
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(o =>

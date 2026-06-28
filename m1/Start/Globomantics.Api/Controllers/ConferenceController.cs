@@ -6,7 +6,8 @@ namespace Globomantics.Server.Controllers
 {
     [ApiController]
     [Route("conference")]
-    public class ConferenceController(IConferenceRepository repo) : Controller
+    public class ConferenceController(IConferenceRepository repo) : 
+        Controller
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]

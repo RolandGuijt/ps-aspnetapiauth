@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-Globomantics.Client-fe4ec916-23f4-424b-b27b-c7dbfc52464f</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Duende.IdentityModel" Version="8.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.9" />
+    </ItemGroup>
+</Project>

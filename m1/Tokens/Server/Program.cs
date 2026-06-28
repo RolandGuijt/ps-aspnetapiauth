@@ -14,7 +14,7 @@ app.MapGet("/login", (string username) =>
 {
     var claimsPrincipal = new ClaimsPrincipal(
       new ClaimsIdentity(
-        new[] { new Claim(ClaimTypes.Name, username) },
+          [new Claim(ClaimTypes.Name, username)],
         BearerTokenDefaults.AuthenticationScheme
       )
     );
@@ -22,9 +22,6 @@ app.MapGet("/login", (string username) =>
     return Results.SignIn(claimsPrincipal);
 });
 
-app.MapGet("/user", (ClaimsPrincipal user) =>
-{
-    return Results.Ok($"Welcome {user.Identity.Name}!");
-}).RequireAuthorization();
+app.MapGet("/user", (ClaimsPrincipal user) => Results.Ok($"Welcome {user.Identity.Name}!")).RequireAuthorization();
 
 app.Run();

@@ -13,8 +13,8 @@ builder.Services.AddScoped<IProposalRepository, ProposalRepository>();
 var app = builder.Build();
 
 //app.MapGet("/conferences", 
-//    [TypeFilter(typeof(ApiKeyAttribute))] (IConferenceRepository repo) => 
-//        repo.GetAll());
+//        [TypeFilter(typeof(ApiKeyAttribute))] (IConferenceRepository repo) =>
+//    repo.GetAll());
 
 app.UseApiKey();
 app.UseAuthorization();

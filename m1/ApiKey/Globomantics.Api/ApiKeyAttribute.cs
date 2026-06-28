@@ -5,7 +5,9 @@ namespace Globomantics.Api
 {
     [AttributeUsage(AttributeTargets.Class | 
         AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class ApiKeyAttribute(IConfiguration config) : Attribute, IAuthorizationFilter {
+    public class ApiKeyAttribute(IConfiguration config) : Attribute, 
+        IAuthorizationFilter 
+    {
         private const string _ApiKeyName = "XApiKey";
         private readonly IConfiguration _Config = config;
 

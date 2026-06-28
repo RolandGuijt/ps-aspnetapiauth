@@ -7,6 +7,7 @@ namespace Globomantics.Server.Controllers
 {
     [ApiController]
     [Route("/api/conference")]
+    //[Authorize] Not needed: it's set at a global level in program.cs
     public class ConferenceController(IConferenceRepository repo) : Controller {
         private readonly IConferenceRepository _Repo = repo;
 
