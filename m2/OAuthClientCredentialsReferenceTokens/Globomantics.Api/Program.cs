@@ -1,6 +1,5 @@
 using Globomantics.Api.Repositories;
 using IdentityModel.AspNetCore.OAuth2Introspection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi;
 
