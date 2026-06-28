@@ -30,7 +30,7 @@ public class AccessTokenHandler: DelegatingHandler
 
                 ClientId = "m2m.client",
                 ClientSecret = "511536EF-F270-4058-80CA-1C89C192F69A",
-                Scope = "globoapi"
+                Scope = "globoapi_fullaccess"
             });
         
         _AccessToken = tokenResponse.AccessToken;

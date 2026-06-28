@@ -1,9 +1,9 @@
 ﻿using Duende.IdentityModel.Client;
-
-var discoClient = new DiscoveryCache("https://localhost:5001");
-var disco = await discoClient.GetAsync();
+using System.Net.Http.Headers;
 
 var client = new HttpClient();
+
+var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
 
 var tokenResponse = await client.RequestClientCredentialsTokenAsync(
     new ClientCredentialsTokenRequest
@@ -23,7 +23,7 @@ if (tokenResponse.IsError)
 
 Console.WriteLine(tokenResponse.AccessToken);
 Console.WriteLine(tokenResponse.ExpiresIn);
-
+ 
 var apiClient = new HttpClient();
 apiClient.SetBearerToken(tokenResponse.AccessToken);
 
@@ -32,3 +32,5 @@ var response = await apiClient.GetAsync("https://localhost:5002/conference");
 response.EnsureSuccessStatusCode();
 
 Console.WriteLine(await response.Content.ReadAsStringAsync());
+Console.WriteLine("Press a key to exit");
+Console.ReadKey();
