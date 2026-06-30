@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Globomantics.ApiServices
 {
-    [ServiceFilter(typeof(EnsureAccessTokenFilter))]
     public class ProposalApiService(HttpClient client) : IProposalApiService {
         private readonly HttpClient _Client = client;
 

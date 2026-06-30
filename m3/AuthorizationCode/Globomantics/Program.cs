@@ -1,5 +1,4 @@
-  using Duende.AccessTokenManagement.OpenIdConnect;
-  using Globomantics;
+using Duende.AccessTokenManagement.OpenIdConnect;
 using Globomantics.ApiServices;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -9,15 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<IConferenceApiService, ConferenceApiService>();
-builder.Services.AddScoped<IProposalApiService, ProposalApiService>();
-builder.Services.AddScoped<EnsureAccessTokenFilter>();
-
-builder.Services.AddSingleton(sp =>
-{
-    var client = new HttpClient { BaseAddress = new Uri("https://localhost:5002") };
-    return client;
-});
+builder.Services.AddOpenIdConnectAccessTokenManagement();
+builder.Services.AddHttpClient<IConferenceApiService, ConferenceApiService>(o =>
+        o.BaseAddress = new Uri("https://localhost:5002"))
+    .AddUserAccessTokenHandler();
+builder.Services.AddHttpClient<IProposalApiService, ProposalApiService>(o =>
+        o.BaseAddress = new Uri("https://localhost:5002"))
+    .AddUserAccessTokenHandler();
 
 builder.Services.AddAuthentication(o =>
 {
@@ -54,8 +51,6 @@ builder.Services.AddAuthentication(o =>
         };
 
     });
-
-builder.Services.AddOpenIdConnectAccessTokenManagement();
 
 var app = builder.Build();
 
